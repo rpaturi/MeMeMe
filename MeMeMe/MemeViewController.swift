@@ -16,10 +16,12 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate,UINa
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var navbar: UINavigationItem!
-    @IBOutlet weak var sentMemesHomeButton: UIBarButtonItem!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
+    
     
     let imagePicker = UIImagePickerController()
     var meme: Meme?
+    var isMemeBeingEdited: Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,13 +111,17 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate,UINa
     //Move the keyboard out of the way of bottom text
     func keyboardWillShow(notification: NSNotification) {
         if bottomTextField.isFirstResponder() {
+            toolbar.hidden = true
+            
             view.frame.origin.y -= getKeyboardHeight(notification)
         }
     }
     
     func keyboardWillDisappear(notification: NSNotification) {
         if bottomTextField.isFirstResponder() {
-            self.view.frame.origin.y += getKeyboardHeight(notification)
+            toolbar.hidden = false
+            
+            view.frame.origin.y += getKeyboardHeight(notification)
         }
     }
     
@@ -143,8 +149,8 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate,UINa
         //navbar.hidden = true
         
         // render view to an image
-        UIGraphicsBeginImageContext(self.view.frame.size)
-        self.view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)
+        UIGraphicsBeginImageContext(view.frame.size)
+        view.drawViewHierarchyInRect(view.frame, afterScreenUpdates: true)
         let memedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
@@ -171,7 +177,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate,UINa
             let sharedMeme = [memeImage]
             let activityViewController = UIActivityViewController(activityItems: sharedMeme, applicationActivities: nil)
             
-            self.presentViewController(activityViewController, animated: true, completion: nil)
+            presentViewController(activityViewController, animated: true, completion: nil)
             
             activityViewController.completionWithItemsHandler = {(activityType, completed:Bool, returnedItems:[AnyObject]?, error: NSError?) in
             
@@ -187,13 +193,13 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate,UINa
         }
     }
     
-    //Rest meme generator
+    //Return to sent memes table view
     @IBAction func cancel(sender: AnyObject) {
-        imagePickerView.image = nil
-        formateTextField(topTextField)
-        topTextField.text = "TOP"
-        formateTextField(bottomTextField)
-        bottomTextField.text = "BOTTOM"
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
+    func dismissVC() {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+
 }

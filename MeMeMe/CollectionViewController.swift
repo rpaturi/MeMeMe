@@ -2,26 +2,36 @@
 //  CollectionViewController.swift
 //  MeMeMe
 //
-//  Created by Rachel Paturi on 1/12/16.
+//  Created by Rachel Paturi on 1/28/16.
 //  Copyright © 2016 Rachel Paturi. All rights reserved.
 //
 
 import UIKit
 
-class CollectionViewController: UICollectionViewController {
+class CollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
-    var memes: [Meme] {
-        return (UIApplication.sharedApplication().delegate as! AppDelegate).memes
+    @IBOutlet weak var collectionViewOutlet: UICollectionView!
+    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
+
+    
+    var appDel: AppDelegate {
+        return (UIApplication.sharedApplication().delegate as! AppDelegate)
     }
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        //Calculating and setting the layout for collection view
+        let space: CGFloat = 2.0
+        let dimension = (view.frame.size.width - (2 * space)) / 2.0
         
-        
+        flowLayout.minimumInteritemSpacing = space
+        flowLayout.minimumLineSpacing = space
+        flowLayout.itemSize = CGSizeMake(dimension, dimension)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        collectionViewOutlet.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,31 +39,37 @@ class CollectionViewController: UICollectionViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return memes.count
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return appDel.memes.count
     }
     
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("memeCollectionCell", forIndexPath: indexPath)as! CustomMemeCell
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionViewNewMeme", forIndexPath: indexPath) as! CustomMemeCell
         
-        let meme = memes[indexPath.item]
+        let meme = appDel.memes[indexPath.row]
         
-        let imageView = UIImageView(image: meme.memedImage as? UIImage)
-        cell.memeImage = imageView
-        
+        cell.memeTopText.text = meme.topTextField
+        cell.memeImage?.image = meme.image as? UIImage
+        cell.memeBottomText.text = meme.bottomTextField
+      
         return cell
     }
     
- 
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "collectionViewDetail" {
+            
+            let indexPaths = collectionViewOutlet.indexPathsForSelectedItems()
+            let indexPath = indexPaths![0] as NSIndexPath
+            
+            let collectionDetailVC = segue.destinationViewController as! CollectionViewDetailViewController
+            
+            let memeImage = appDel.memes[indexPath.row]
+                
+            collectionDetailVC.meme = memeImage
+                
+        }
     }
-    */
+    
 
 }

@@ -9,21 +9,21 @@
 /* Begin PBXBuildFile section */
 		DE617C3C1C56A6F300A6936E /* TableViewDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE617C3B1C56A6F300A6936E /* TableViewDetailViewController.swift */; };
 		DE617C821C56ED6100A6936E /* CustomMemeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE617C811C56ED6100A6936E /* CustomMemeCell.swift */; };
-		DE617CE61C5A948C00A6936E /* CollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE617CE51C5A948C00A6936E /* CollectionVC.swift */; };
+		DE617D0A1C5AB3ED00A6936E /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE617D091C5AB3ED00A6936E /* CollectionViewController.swift */; };
 		DE9A02111C45ABA400D2BD5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9A02101C45ABA400D2BD5A /* AppDelegate.swift */; };
 		DE9A02131C45ABA400D2BD5A /* MemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9A02121C45ABA400D2BD5A /* MemeViewController.swift */; };
 		DE9A02161C45ABA400D2BD5A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE9A02141C45ABA400D2BD5A /* Main.storyboard */; };
 		DE9A02181C45ABA400D2BD5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE9A02171C45ABA400D2BD5A /* Assets.xcassets */; };
 		DE9A021B1C45ABA400D2BD5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE9A02191C45ABA400D2BD5A /* LaunchScreen.storyboard */; };
 		DE9A02231C45C49F00D2BD5A /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9A02221C45C49F00D2BD5A /* TableViewController.swift */; };
-		DE9A02271C45C4FC00D2BD5A /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9A02261C45C4FC00D2BD5A /* CollectionViewController.swift */; };
 		DE9A02291C45C9AE00D2BD5A /* SaveMeme.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9A02281C45C9AE00D2BD5A /* SaveMeme.swift */; };
+		DEE1526F1C611D2D003485BC /* CollectionViewDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE1526E1C611D2D003485BC /* CollectionViewDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		DE617C3B1C56A6F300A6936E /* TableViewDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewDetailViewController.swift; sourceTree = "<group>"; };
 		DE617C811C56ED6100A6936E /* CustomMemeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomMemeCell.swift; sourceTree = "<group>"; };
-		DE617CE51C5A948C00A6936E /* CollectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionVC.swift; sourceTree = "<group>"; };
+		DE617D091C5AB3ED00A6936E /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		DE9A020D1C45ABA300D2BD5A /* MeMeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeMeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE9A02101C45ABA400D2BD5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE9A02121C45ABA400D2BD5A /* MemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeViewController.swift; sourceTree = "<group>"; };
@@ -32,8 +32,8 @@
 		DE9A021A1C45ABA400D2BD5A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DE9A021C1C45ABA400D2BD5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE9A02221C45C49F00D2BD5A /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
-		DE9A02261C45C4FC00D2BD5A /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		DE9A02281C45C9AE00D2BD5A /* SaveMeme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveMeme.swift; sourceTree = "<group>"; };
+		DEE1526E1C611D2D003485BC /* CollectionViewDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,10 +70,10 @@
 				DE9A02121C45ABA400D2BD5A /* MemeViewController.swift */,
 				DE9A02141C45ABA400D2BD5A /* Main.storyboard */,
 				DE617C811C56ED6100A6936E /* CustomMemeCell.swift */,
-				DE617CE51C5A948C00A6936E /* CollectionVC.swift */,
 				DE617C3B1C56A6F300A6936E /* TableViewDetailViewController.swift */,
+				DE617D091C5AB3ED00A6936E /* CollectionViewController.swift */,
+				DEE1526E1C611D2D003485BC /* CollectionViewDetailViewController.swift */,
 				DE9A02281C45C9AE00D2BD5A /* SaveMeme.swift */,
-				DE9A02261C45C4FC00D2BD5A /* CollectionViewController.swift */,
 				DE9A02221C45C49F00D2BD5A /* TableViewController.swift */,
 				DE9A02171C45ABA400D2BD5A /* Assets.xcassets */,
 				DE9A02191C45ABA400D2BD5A /* LaunchScreen.storyboard */,
@@ -154,10 +154,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE9A02291C45C9AE00D2BD5A /* SaveMeme.swift in Sources */,
-				DE9A02271C45C4FC00D2BD5A /* CollectionViewController.swift in Sources */,
-				DE617CE61C5A948C00A6936E /* CollectionVC.swift in Sources */,
 				DE9A02131C45ABA400D2BD5A /* MemeViewController.swift in Sources */,
 				DE617C821C56ED6100A6936E /* CustomMemeCell.swift in Sources */,
+				DE617D0A1C5AB3ED00A6936E /* CollectionViewController.swift in Sources */,
+				DEE1526F1C611D2D003485BC /* CollectionViewDetailViewController.swift in Sources */,
 				DE9A02231C45C49F00D2BD5A /* TableViewController.swift in Sources */,
 				DE9A02111C45ABA400D2BD5A /* AppDelegate.swift in Sources */,
 				DE617C3C1C56A6F300A6936E /* TableViewDetailViewController.swift in Sources */,

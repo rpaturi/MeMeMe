@@ -8,12 +8,14 @@
 
 import UIKit
 
-class TableViewController: UITableViewController {
+class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var memes: [Meme] {
-        return (UIApplication.sharedApplication().delegate as! AppDelegate).memes
+    @IBOutlet weak var tableView: UITableView!
+    
+    var appDel: AppDelegate {
+        return (UIApplication.sharedApplication().delegate as! AppDelegate)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,13 +27,13 @@ class TableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return memes.count
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return appDel.memes.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MemeCell")! as UITableViewCell
-        let meme = self.memes[indexPath.row]
+        let meme = appDel.memes[indexPath.row]
         
         // Set the name and image
         cell.textLabel?.text = meme.topTextField
@@ -41,28 +43,33 @@ class TableViewController: UITableViewController {
 
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+    //Allow left-swipe to delete meme
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
     }
     
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+            
+            appDel.memes.removeAtIndex(indexPath.row)
+            
+            let sections = NSIndexSet(index: 0)
+            tableView.reloadSections(sections, withRowAnimation: .Fade)
+        }
+    }
+    
+    //Send selected cell's image information to TableViewDetailViewController
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "tableViewDetail" {
+            let tableDetailVC = segue.destinationViewController as! TableViewDetailViewController
+            
             if let indexPath = tableView.indexPathForSelectedRow {
-                let memeImage = memes[indexPath.row]
+                let memeImage = appDel.memes[indexPath.row]
                 
-                (segue.destinationViewController as! TableViewDetailViewController).meme = memeImage
+                tableDetailVC.meme = memeImage
             }
         }
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
