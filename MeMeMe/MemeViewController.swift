@@ -38,6 +38,23 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate,UINa
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         
         subscribeToKeyboardNotifications()
+        
+        if isMemeBeingEdited == true {
+            //Set meme text so it can be edited
+            topTextField.text = meme?.topTextField
+            bottomTextField.text = meme?.bottomTextField
+            
+            //Scale and set image to be displayed properly
+            imagePickerView.contentMode = .ScaleAspectFill
+            imagePickerView.image = meme?.image as? UIImage
+            
+            
+            
+            //Make sure toolbar can be seen
+            
+            
+
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -56,6 +73,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate,UINa
         
         presentViewController(imagePicker, animated: true, completion: nil)
     }
+
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
@@ -146,7 +164,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate,UINa
     func generateMemedImage() -> UIImage {
         // Hide toolbar and navbar
         toolbar.hidden = true
-        //navbar.hidden = true
+        
         
         // render view to an image
         UIGraphicsBeginImageContext(view.frame.size)
@@ -156,7 +174,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate,UINa
         
         // Show toolbar and navbar
         toolbar.hidden = false
-        //navbar.hidden = false
+       
         
         return memedImage
     }
@@ -196,10 +214,11 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate,UINa
     //Return to sent memes table view
     @IBAction func cancel(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
+        
+        if isMemeBeingEdited == true {
+            self.navigationController?.popViewControllerAnimated(true)
+        }
     }
     
-    func dismissVC() {
-        dismissViewControllerAnimated(true, completion: nil)
-    }
 
 }

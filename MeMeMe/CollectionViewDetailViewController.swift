@@ -10,9 +10,12 @@ import UIKit
 
 class CollectionViewDetailViewController: UIViewController {
     
+    
     var meme: Meme?
     
+    
     @IBOutlet weak var pickedImage: UIImageView!
+    @IBOutlet weak var editButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +28,19 @@ class CollectionViewDetailViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "collectionViewEditMeme" {
+            let collectionViewEditVC = segue.destinationViewController as! MemeViewController
+            
+            let originalMeme = meme
+            collectionViewEditVC.meme = originalMeme
+            collectionViewEditVC.isMemeBeingEdited = true
+            
+        }
+    }
+    
+    
     
 
 }

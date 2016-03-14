@@ -14,6 +14,7 @@ class TableViewDetailViewController: UIViewController {
     
     @IBOutlet weak var navBar: UINavigationItem!
     @IBOutlet weak var pickedImage: UIImageView!
+    @IBOutlet weak var editButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +34,16 @@ class TableViewDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "tableViewEditMeme" {
+            let tableViewEditVC = segue.destinationViewController as! MemeViewController
+            
+            let originalMeme = meme
+            tableViewEditVC.meme = originalMeme
+            tableViewEditVC.isMemeBeingEdited = true
+            
+        }
+    }
     
     
 
